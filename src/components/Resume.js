@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         minWidth: "7rem",
         textAlign: "center",
         border: "none",
-        padding: "1rem"
+        padding: "1rem",
         boxShadow: "0 1px 1px 0 rgb(0 0 0 / 20%), 0 1px 2px 0 rgb(0 0 0 / 19%)",
         background: "#77bb77",
         "&:hover": {
@@ -50,14 +50,16 @@ function Resume() {
         <div>
           <div ref={ref} className={classes.resume}>
             {answers.map((answer) => {
-              {answer.resumeFieldId === "name"} ||
-              answer.resumeFieldId === "email" ||
-              answer.resumeFieldId === "address" ||
-              answer.resumeFieldId === "phoneNumber" ? (
-                  <div
-                    style={{
-                        textAlign: "right",
-                    }}
+                return(
+                    <div>
+                     {answer.resumeFieldId === "name" ||
+                      answer.resumeFieldId === "email" ||
+                      answer.resumeFieldId === "address" ||
+                      answer.resumeFieldId === "phoneNumber" ? (
+                          <div
+                            style={{
+                                textAlign: "right",
+                            }}
                 >
                   <label>{answer.answer}</label>
                 </div>
@@ -81,7 +83,7 @@ function Resume() {
               <button className={classes.buttonBuildNew} onClick={refreshPage}>
                 Build New
               </button>
-              <pdf targetRef={ref} filename="resume.pdf">
+              <Pdf targetRef={ref} filename="resume.pdf">
                 {({ toPdf }) => (
                   <button onClick={toPdf} className={classes.buttonDownload}>
                     Download Resume
@@ -90,7 +92,6 @@ function Resume() {
               </Pdf>
             </div>
         </div>
-    </div>
   );
 }
 
